@@ -2,12 +2,17 @@
 Group 5 Project Repo
 
 Raw Data Distribution
-Annie 1-4
-Brianna 5-8
-Maxwell 9-12
-Sofia 13-16
+First 4 Rivers 
 
-Each individual is assigned 4 raw data sets to tidy
+Navigate in taylor terminal to /courses/EDS214/group_project/tropic-thunder-data
+
+The code to read in data is as follows library(tidyverse)
+RS_data <- read_csv("/courses/EDS214/group_project/tropic-thunder-data/Raw-Data/RioEspirituSanto.csv")
+
+this pathway may be stored as a variable and called to action when reading in files by using read_csv(file.path(var-name, fsep = file-name.csv))
+
+
+Each individual is assigned raw data sets to tidy
 tidying steps include:
 snake_case, timeline/sampling averaging, lubridate, INCLUDE OTHER ACTIONS HERE
 the cleaned data for each are stored and saved as files
