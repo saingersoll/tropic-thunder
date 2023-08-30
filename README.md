@@ -2,7 +2,7 @@
 Group 5 Project Repo
 
 Raw Data Distribution
-First 4 Rivers 
+4 Rivers: PRM, Q1, Q2, Q3 
 
 Navigate in taylor terminal to /courses/EDS214/group_project/tropic-thunder-data
 
