@@ -5,6 +5,38 @@ format: html
 editor: visual
 ---
 
+```{r}
+library(here)
+library(tidyverse)
+library(dplyr)
+library(janitor)
+library(lubridate)
+```
+
 ## Cleaning Data
 
-### Read the data in
+LUQ LTER method detection limits
+
+Quebrada one-Bisley (Q1) Chemistry Data
+
+Quebrada two-Bisley (Q2) Chemistry Data
+
+Quebrada three-Bisley (Q3) Chemistry Data
+
+```{r}
+PRM <- read_csv(here("raw-data","RioMameyesPuenteRoto.csv"))
+Q1 <-  read.csv(here("raw-data", "QuebradaCuenca1-Bisley.csv"))
+Q2 <-  read.csv(here("raw-data", "QuebradaCuenca2-Bisley.csv"))
+Q3 <-  read.csv(here("raw-data", "QuebradaCuenca3-Bisley.csv"))
+
+```
+
+Cleaning Model
+
+```{r}
+PRM_clean <- PRM %>% clean_names() %>% 
+  mutate(clean_date = lubridate::mdy(sample_date)) 
+
+```
+
+S
