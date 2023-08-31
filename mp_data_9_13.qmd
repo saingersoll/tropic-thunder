@@ -4,29 +4,34 @@ format: html
 editor: visual
 ---
 
+libraries
+
 ```{r}
-library(tidyverse)
 library(here)
+library(tidyverse)
 ```
 
-Getting data
+read in data
 
 ```{r}
-QuebradaSonadora <- read_csv("raw-data/QuebradaSonadora.csv")
+# read in diatom data
+diatom_raw <- read_csv(here("diatom-raw-data", "Mameyesdiatomdata.csv")) %>% 
+  janitor::clean_names()
 
-QuebradaToronja <- read_csv("raw-data/QuebradaToronja.csv")
-
-RioMamayesGage <- read_csv("raw-data/RioMameyesGage.csv")
-
-RioIcacos <- read_csv("raw-data/RioIcacos.csv")
+# read in chemistry data to compare
+Q3_ph <-  read_csv(here("raw-data", "QuebradaCuenca3-Bisley.csv")) %>% 
+  janitor::clean_names()
 ```
 
-Clean data
+clean data
 
 ```{r}
-view(QuebradaToronja)
-```
+# clean Q3 data
+Q3_ph_clean <- Q3_ph %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+  select(clean_date, p_h, sample_id)
 
-```{r}
-ggplot()
+# filter diatom data to only Q3 site
+Q3_d_clean <- diatom_raw %>% 
+  filter(site == "BQ3")
 ```
