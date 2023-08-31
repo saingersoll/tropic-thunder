@@ -58,6 +58,9 @@ total_data2<- bind_rows(total_data1, Q2_clean)
 total_data <- bind_rows(total_data2, Q3_clean)
 ```
 
+
+
+
 ```{r}
  k_plot <- ggplot(data = total_data , aes(x = clean_date, y = k))+
   geom_line(aes(color = sample_id)) +
@@ -77,6 +80,22 @@ total_data <- bind_rows(total_data2, Q3_clean)
 ```
 
 ```{r}
+n_plot2 <- plot_ly(data = total_data, 
+                   x = ~clean_date,
+                   y = ~no3_n,
+                   type = 'scatter', 
+                   mode = 'line',
+                   color = ~sample_id)
+n_plot2
+ 
+```
+
+```{r}
+k_plot2 <- plot_ly(data = total_data , x = ~clean_date, y = ~k, type = 'scatter', mode = 'lines', color = ~sample_id)
+k_plot2
+```
+
+```{r}
 final_plot <- subplot(n_plot, k_plot, nrows = 2) %>% 
   layout(title = "")
 
@@ -84,6 +103,7 @@ final_plot <- subplot(n_plot, k_plot, nrows = 2) %>%
 final_plot <- final_plot %>% layout(title = "Water Stream Chemistry - Luqillo Mountains",
                      plot_bgcolor='#E5ECF6',
          xaxis = list(
+           title= "test",
            zerolinecolor = '#ffff',
            zerolinewidth = 2,
            gridcolor = 'ffff'),
