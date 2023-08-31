@@ -25,9 +25,9 @@ Quebrada three-Bisley (Q3) Chemistry Data
 
 ```{r}
 PRM <- read_csv(here("raw-data","RioMameyesPuenteRoto.csv"))
-Q1 <-  read.csv(here("raw-data", "QuebradaCuenca1-Bisley.csv"))
-Q2 <-  read.csv(here("raw-data", "QuebradaCuenca2-Bisley.csv"))
-Q3 <-  read.csv(here("raw-data", "QuebradaCuenca3-Bisley.csv"))
+Q1 <-  read_csv(here("raw-data", "QuebradaCuenca1-Bisley.csv"))
+Q2 <-  read_csv(here("raw-data", "QuebradaCuenca2-Bisley.csv"))
+Q3 <-  read_csv(here("raw-data", "QuebradaCuenca3-Bisley.csv"))
 
 ```
 
@@ -36,16 +36,16 @@ Cleaning Model
 ```{r}
 PRM_clean <- PRM %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-  select(clean_date, no3_n, k, pH)
+  select(clean_date, no3_n, k)
 Q1_clean <- Q1 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 Q2_clean <- Q2 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 Q3_clean <- Q3 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 
 ```
 
