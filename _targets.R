@@ -49,5 +49,50 @@ tar_source()
 
 # Replace the target list below with your own:
 list(
- 
+  tar_target(PRM, "raw-data/RioMameyesPuenteRoto.csv", format = "file"),
+  # Reading in PRM
+  tar_target(Q1, "raw-data/QuebradaCuenca1-Bisley.csv", format = "file"),
+  # Reading in Q1
+  tar_target(Q2, "raw-data/QuebradaCuenca2-Bisley.csv", format = "file"),
+  # Reading in Q2
+  tar_target(Q3, "raw-data/QuebradaCuenca3-Bisley.csv", format = "file"),
+  # Reading in Q3
+  
+  # CAUTION BEFORE RUNNING, CHECK ABOUT THE NAMING OF NEW DATA
+  # I want to save this data in the read in file that is then cleaned
+  
+  # Do I need to write the cleaning portion here
+  
+  tar_target(PRM_data, get_data(PRM)),
+  # Grabbing PRM data
+  tar_target(Q1_data, get_data(Q1)),
+  # Grabbing Q1 data
+  tar_target(Q2_data, get_data(Q2)),
+  # Grabbing Q2 data
+  tar_target(Q3_data, get_data(Q3)),
+  # Grabbing Q3 data
+  
+  # Cleaning data sets
+  # ? How do I demonstrate this code properly in target
+  
+  tar_target(PRM_clean, scrub_funct(PRM_data)),
+  # Cleaning PRM data set
+  tar_target(Q1_clean, scrub_funct(Q1_data)),
+  # Cleaning Q1 data set 
+  tar_target(Q2_clean, scrub_funct(Q2_data)),
+  # Cleaning Q2 data set  
+  tar_target(Q3_clean, scrub_funct(Q3_data)),
+  # Cleaning Q3 data set  
+
+  
+  # Binding Data Sets
+  tar_target(total_data1, binding_data(PRM_clean, Q1_clean)),
+  # Bound by rows PRM + Q1lean, Q3_clean))
+  # Bound by rows Q1 + Q3
+  tar_target(total_data, binding_data(total_data1, total_data2)),
+  
+  
+  # Ggplot Graphing
+  
+  tar_target(k_plot, sample_plot(col_number(3)))
 )

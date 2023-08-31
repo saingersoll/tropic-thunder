@@ -51,4 +51,24 @@ tar_target(Q2_clean, scrub_funct(Q2_data))
 tar_target(Q3_clean, scrub_funct(Q3_data))
 # Cleaning Q3 data set  
 View(Q3_clean)
+
+
+# Binding Data Sets
+tar_target(total_data1, binding_data(PRM_clean, Q1_clean))
+# Bound by rows PRM + Q1lean, Q3_clean))
+# Bound by rows Q1 + Q3
+tar_target(total_data, binding_data(total_data1, total_data2))
+
+View(total_data)
+
+
+# Ggplot Graphing
+
+tar_target(k_plot, sample_plot(col_number(3)))
+
+View(k_plot)
+```
+
+```{r}
+tar_manifest()
 ```
