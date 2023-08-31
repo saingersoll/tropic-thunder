@@ -45,7 +45,6 @@ Q2_clean <- Q2 %>% clean_names() %>%
     select(clean_date, no3_n, k)
 Q3_clean <- Q3 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k)
   select(clean_date, no3_n, k, sample_id)
 Q1_clean <- Q1 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
