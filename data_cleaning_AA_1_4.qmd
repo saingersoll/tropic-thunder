@@ -36,17 +36,48 @@ Q3 <-  read_csv(here("raw-data", "QuebradaCuenca3-Bisley.csv"))
 Cleaning Model
 
 ```{r}
-PRM_clean <- PRM %>% clean_names() %>% 
+PRM_clean <- PRM %>%
+  clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-  select(clean_date, no3_n, k, sample_id)
-Q1_clean <- Q1 %>% clean_names() %>% 
+  mutate(clean_year = lubridate::year(sample_date)) %>% 
+  filter(clean_year ==1989 |clean_year== 1990 |
+         clean_year == 1991| clean_year == 1992|
+         clean_year == 1993 | clean_year == 1994) %>% 
+         select(clean_date, no3_n, k, sample_id)
+  
+
+Q1_clean <- Q1 %>%
+  clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+  mutate(clean_year = lubridate::year(sample_date)) %>% 
+  filter(clean_year ==1989 |clean_year== 1990 |
+         clean_year == 1991| clean_year == 1992|
+         clean_year == 1993 | clean_year == 1994) %>% 
+         select(clean_date, no3_n, k, sample_id) 
+
+Q2_clean <- Q2 %>%
+  clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+<<<<<<< HEAD
+  mutate(clean_year = lubridate::year(sample_date)) %>% 
+  filter(clean_year ==1989 |clean_year== 1990 |
+         clean_year == 1991| clean_year == 1992|
+         clean_year == 1993 | clean_year == 1994) %>% 
+         select(clean_date, no3_n, k, sample_id)
+
+=======
+<<<<<<< HEAD
+    select(clean_date, no3_n, k)
+=======
     select(clean_date, no3_n, k, sample_id)
-Q2_clean <- Q2 %>% clean_names() %>% 
-  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, sample_id)
+>>>>>>> refs/remotes/origin/main
+>>>>>>> 3a7839bdbf43378f21f8be42674a16d33a356967
 Q3_clean <- Q3 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+  mutate(clean_year = lubridate::year(sample_date)) %>% 
+  filter(clean_year ==1989 |clean_year== 1990 |
+         clean_year == 1991| clean_year == 1992|
+         clean_year == 1993 | clean_year == 1994)%>% 
   select(clean_date, no3_n, k, sample_id)
 ```
 
@@ -62,6 +93,11 @@ total_data <- bind_rows(total_data2, Q3_clean)
 
 
 ```{r}
+<<<<<<< HEAD
+ggplot(data = total_data , aes(x = clean_date, y = k))+
+  geom_line(aes(color = sample_id))
+```
+=======
  k_plot <- ggplot(data = total_data , aes(x = clean_date, y = k))+
   geom_line(aes(color = sample_id)) +
   labs(x = "Year",
@@ -73,8 +109,8 @@ total_data <- bind_rows(total_data2, Q3_clean)
 ```{r}
  n_plot <- ggplot(data = total_data , aes(x = clean_date, y = no3_n))+
   geom_line(aes(color = sample_id))+
-  labs(x = "Year",
-       y = "Nitrate")
+  labs(y = "Nitrate")+
+  theme(axis.title.x=element_blank())
   
  
  n_plot
@@ -83,9 +119,6 @@ total_data <- bind_rows(total_data2, Q3_clean)
 ```{r}
 final_plot <- subplot(n_plot, k_plot, nrows = 2, titleY = TRUE, titleX = TRUE) %>% 
   layout(title = "Water Stream Chemistry - Luqillo Mountains")
-
-
-
 
 final_plot
 ```
@@ -96,3 +129,4 @@ final_plot
 
 
 
+>>>>>>> refs/remotes/origin/main
