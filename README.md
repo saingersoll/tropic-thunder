@@ -12,15 +12,33 @@ RS_data <- read_csv("/courses/EDS214/group_project/tropic-thunder-data/Raw-Data/
 this pathway may be stored as a variable and called to action when reading in files by using read_csv(file.path(var-name, fsep = file-name.csv))
 
 
-Each individual is assigned raw data sets to tidy
+Each raw data set is read in to tidy
 tidying steps include:
-snake_case, timeline/sampling averaging, lubridate, INCLUDE OTHER ACTIONS HERE
+clean_name, lubridate, select, mutate, and filter
 the cleaned data for each are stored and saved as files
-these 4 cleaned data sets are then to be merged using full_join 
 
-Personal qmd files are then uploaded to shared repository 
+In Console: sampling timelines determined
+PRM Start Date: 1989-05-16
+Q1:Q3 Start Date: 1989-05-20
+PRM:Q3 End Date: 2015-12-25
 
-In final qmd, files of full_join called in and merged for a final qmd script that includes a saved and stored meta full_join 
+these 4 cleaned data sets were then to be merged using bind_rows
 
-This stored meta full join is utilized to create graphs
+Install package plotly to use subplot(n_plot, k_plot, nrows = 2) to stack graphs and store as final_plot
+
+Storing a variable for layout modifications
+
+Modifying final_plot,
+for titles, layout(title = "Water Stream Chemistry - Luquillo Mountains") %>%
+layout(title = 'Customizing Subplot Axes',
+                     plot_bgcolor='#E5ECF6',
+         xaxis = list(
+           zerolinecolor = '#ffff',
+           zerolinewidth = 2,
+           gridcolor = 'ffff'),
+         yaxis = list(
+           zerolinecolor = '#ffff',
+           zerolinewidth = 2,
+           gridcolor = 'ffff'))
+
 
