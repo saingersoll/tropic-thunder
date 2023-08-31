@@ -12,7 +12,7 @@ scrub_funct <- function(site_df) {
     mutate(clean_date = lubridate::ymd(sample_date)) %>% 
     mutate(year = lubridate::year(clean_date)) %>% 
     select(clean_date, no3_n, k, sample_id) %>% 
-    filter(year %in% seq[1989:1994])
+    filter(year %in% seq(1989:1994))
 } 
 
 
