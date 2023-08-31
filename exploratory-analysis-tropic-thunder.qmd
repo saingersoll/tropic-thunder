@@ -8,6 +8,7 @@ editor: visual
 
 ```{r}
 library(targets)
+library(stringr)
 ```
 
 ```{r}
@@ -49,5 +50,5 @@ tar_target(Q2_clean, scrub_funct(Q2_data))
 # Cleaning Q2 data set  
 tar_target(Q3_clean, scrub_funct(Q3_data))
 # Cleaning Q3 data set  
-
+View(Q3_clean)
 ```
