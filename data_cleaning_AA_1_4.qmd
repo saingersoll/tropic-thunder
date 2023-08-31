@@ -6,6 +6,7 @@ editor: visual
 ---
 
 ```{r}
+library(RColorBrewer)
 library(here)
 library(tidyverse)
 library(dplyr)
@@ -36,16 +37,16 @@ Cleaning Model
 ```{r}
 PRM_clean <- PRM %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-  select(clean_date, no3_n, k, pH)
+  select(clean_date, no3_n, k)
 Q1_clean <- Q1 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 Q2_clean <- Q2 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 Q3_clean <- Q3 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
-    select(clean_date, no3_n, k, pH)
+    select(clean_date, no3_n, k)
 
 ```
 
@@ -57,7 +58,37 @@ total_data2<- bind_rows(total_data1, Q2_clean)
 total_data <- bind_rows(total_data2, Q3_clean)
 ```
 
+
 ```{r}
-ggplot(data = total_data , aes(x = clean_date, y = k))+
-  geom_line()
+
+color_palette <- scale_color_brewer(palette="Set1")
+ggplot(data = total_data, aes(x = clean_date, y = k, color = as.factor(total_data))) +
+  geom_line(aes(linetype = as.factor(total_data)), size = 2) +
+  geom_point(aes(shape = as.factor(total_data)), size = 3) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma) +
+  color_palette +
+  labs(
+    title = "Concentration of Element K Over Time",
+    subtitle = "Data from multiple sources",
+    x = "Date",
+    y = "Concentration of K",
+    color = "Data Source",
+    linetype = "Data Source",
+    shape = "Data Source"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 15),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    legend.position = "bottom"
+  )
+
+# Add a new column to total_data for data source
+total_data$data_source <- factor(
+  rep(c("PRM", "Q1", "Q2", "Q3"), 
+      times = c(nrow(PRM_clean), nrow(Q1_clean), nrow(Q2_clean), nrow(Q3_clean)))
+
 ```
