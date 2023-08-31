@@ -46,6 +46,16 @@ Q2_clean <- Q2 %>% clean_names() %>%
 Q3_clean <- Q3 %>% clean_names() %>% 
   mutate(clean_date = lubridate::ymd(sample_date)) %>% 
     select(clean_date, no3_n, k)
+  select(clean_date, no3_n, k, sample_id)
+Q1_clean <- Q1 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, sample_id)
+Q2_clean <- Q2 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, sample_id)
+Q3_clean <- Q3 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, sample_id)
 
 ```
 
@@ -59,5 +69,5 @@ total_data <- bind_rows(total_data2, Q3_clean)
 
 ```{r}
 ggplot(data = total_data , aes(x = clean_date, y = k))+
-  geom_line()
+  geom_line(aes(color = sample_id))
 ```
