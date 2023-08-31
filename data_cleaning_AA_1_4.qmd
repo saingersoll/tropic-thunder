@@ -11,6 +11,8 @@ library(tidyverse)
 library(dplyr)
 library(janitor)
 library(lubridate)
+
+library(plotly)
 ```
 
 ## Cleaning Data
@@ -57,6 +59,38 @@ total_data <- bind_rows(total_data2, Q3_clean)
 ```
 
 ```{r}
-ggplot(data = total_data , aes(x = clean_date, y = k))+
-  geom_line(aes(color = sample_id))
+ k_plot <- ggplot(data = total_data , aes(x = clean_date, y = k))+
+  geom_line(aes(color = sample_id)) +
+  labs(x = "Year",
+       y = "K mg i-1")
+ 
+ k_plot
+```
+
+```{r}
+ n_plot <- ggplot(data = total_data , aes(x = clean_date, y = no3_n))+
+  geom_line(aes(color = sample_id)) +
+  labs(x = "Year",
+       y = "NO3 mg i-1")
+ 
+ n_plot
+```
+
+```{r}
+final_plot <- subplot(n_plot, k_plot, nrows = 2) %>% 
+  layout(title = "")
+
+
+final_plot <- final_plot %>% layout(title = "Water Stream Chemistry - Luqillo Mountains",
+                     plot_bgcolor='#E5ECF6',
+         xaxis = list(
+           zerolinecolor = '#ffff',
+           zerolinewidth = 2,
+           gridcolor = 'ffff'),
+         yaxis = list(
+           zerolinecolor = '#ffff',
+           zerolinewidth = 2,
+           gridcolor = 'ffff'))
+
+final_plot
 ```
