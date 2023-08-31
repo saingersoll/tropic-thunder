@@ -4,16 +4,18 @@ editor: visual
 execute: 
   warning: false
 ---
+
 # load packages
+
 ```{r}
 library(metajam)
 library(tidyverse)
 library(here)
 ```
 
-# download data 
+# download data
+
 ```{r}
 unzip("knb-lter-luq.20.4923061.zip")
 
 ```
-
