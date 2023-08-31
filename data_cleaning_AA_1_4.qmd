@@ -35,6 +35,29 @@ Cleaning Model
 
 ```{r}
 PRM_clean <- PRM %>% clean_names() %>% 
-  mutate(clean_date = lubridate::ymd(sample_date)) 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+  select(clean_date, no3_n, k, pH)
+Q1_clean <- Q1 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, pH)
+Q2_clean <- Q2 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, pH)
+Q3_clean <- Q3 %>% clean_names() %>% 
+  mutate(clean_date = lubridate::ymd(sample_date)) %>% 
+    select(clean_date, no3_n, k, pH)
 
+```
+
+Combine Rows
+
+```{r}
+total_data1<- bind_rows(PRM_clean,Q1_clean)
+total_data2<- bind_rows(total_data1, Q2_clean)
+total_data <- bind_rows(total_data2, Q3_clean)
+```
+
+```{r}
+ggplot(data = total_data , aes(x = clean_date, y = k))+
+  geom_line()
 ```
