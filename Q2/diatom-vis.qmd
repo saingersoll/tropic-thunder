@@ -70,11 +70,23 @@ agg_data <- Q3_ph_d_join %>%
 ```
 
 ```{r}
+<<<<<<< HEAD
 ggplot(agg_data, aes(x = as.factor(p_h))) +
+=======
+agg_plot <- ggplot(agg_data, aes(x = as.factor(p_h), y = as.factor(percent_live))) +
+>>>>>>> origin/main
   geom_tile(aes(fill = ..count..), stat = "count") +
   scale_fill_gradient(low = "white", high = "blue") +
-  labs(x = "p_h", fill = "Frequency") +
+  labs(x = "p_h", y = "Percent Alive", fill = "Frequency") +
   theme_minimal()
+
+View(agg_plot) #bunk
+```
+
+```{r}
+agg_plot2 <- ggplot(agg_data, aes(x=p_h,y=percent_live),data=Q3_ph_d_join) +
+  geom_point(alpha=1/60) +
+  xlim(5,9) 
 ```
 
 ## Selecting columns
@@ -107,14 +119,4 @@ View(Q3_plot_df)
 ```{r}
 Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter(aes(color = side))
- # labs(x = "pH", y = "Percent of Living Diatom")
-View(Q3_ph_plot)
-```
-
-https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
-
-```{r}
-ggplot(aes(x=p_h,y=percent_live),data=Q3_ph_d_join)+
-  geom_point(alpha=1/60)+
-  xlim(5,9)
 ```
