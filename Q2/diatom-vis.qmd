@@ -120,8 +120,14 @@ View(Q3_ph_plot)
 https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
 
 ```{r}
+<<<<<<< HEAD
 Q3_pl_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter(aes(color = side))
  # labs(y = "Percent of Living Diatom") + theme(xaxis = FALSE) // line needs to be fixed
 View(Q3_plot)
+=======
+ggplot(aes(x=p_h,y=percent_live),data=Q3_ph_d_join)+
+  geom_point(alpha=1/60)+
+  xlim(5,9)
+>>>>>>> 88b3fad295a257d8e99fa6847f1a44af98b617e2
 ```
