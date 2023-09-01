@@ -45,12 +45,24 @@ Q3_ph_d_join <- full_join(Q3_ph_clean, Q3_d_clean)
 View(Q3_ph_d_join)
 # it would be interesting to investigate the variations in side 1:3 percent_live as a variable of pH
 # potential option to explore reasoning for this for the presentation
-# Selecting columns
+```
 
+## Selecting columns
+
+```{r}
+# Creating column vector to call
+Q3_cols <- c("p_h", "side", "percent_live", "clean_date")
+
+# Slicing df
 Q3_plot_df <- Q3_ph_d_join %>% 
   select(p_h, side, percent_live, clean_date) %>%
-  filter(!is.na(percent_live)) %>% 
-  mutate_if(is.character,as.numeric)
+  filter(!is.na(percent_live))
+
+# ATTENTION THIS DATA FRAME CONTAINS DOUBLES AND CHR 
+# NEEDS TO BE CONVERTED TO NUMERIC TO PLOT
+
+#%>% 
+ # mutate(across(Q3_cols, is.numeric))
 
 View(Q3_plot_df)
 ```
@@ -62,4 +74,8 @@ Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter()
  # labs(x = "pH", y = "Percent of Living Diatom")
 View(Q3_plot)
+```
+
+```{r}
+
 ```
