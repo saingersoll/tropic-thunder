@@ -48,7 +48,9 @@ View(Q3_ph_d_join)
 # Selecting columns
 
 Q3_plot_df <- Q3_ph_d_join %>% 
-  select(p_h, side, percent_live, clean_date)
+  select(p_h, side, percent_live, clean_date) %>%
+  filter(!is.na(percent_live)) %>% 
+  mutate_if(is.character,as.numeric)
 
 View(Q3_plot_df)
 ```
@@ -57,9 +59,17 @@ View(Q3_plot_df)
 
 ```{r}
 Q3_plot <- ggplot(data = Q3_plot_df, aes(x = p_h, y = percent_live)) +
-  geom_line(aes(color = side)) +
-  labs(x = "pH",
-       y = "Percent of Living Diatom")
+  geom_line()
+#+
+ # labs(x = "pH",
+  #     y = "Percent of Living Diatom")
+
+View(Q3_plot)
+```
+
+```{r}
+Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
+  geom_jitter()
 
 View(Q3_plot)
 ```
