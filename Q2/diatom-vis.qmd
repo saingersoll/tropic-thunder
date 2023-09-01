@@ -115,5 +115,7 @@ View(Q3_ph_plot)
 https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
 
 ```{r}
-
+ggplot(aes(x=p_h,y=percent_live),data=Q3_ph_d_join)+
+  geom_point(alpha=1/60)+
+  xlim(5,9)
 ```
