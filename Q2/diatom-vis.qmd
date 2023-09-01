@@ -58,18 +58,8 @@ View(Q3_plot_df)
 ## Data Viz
 
 ```{r}
-Q3_plot <- ggplot(data = Q3_plot_df, aes(x = p_h, y = percent_live)) +
-  geom_line()
-#+
- # labs(x = "pH",
-  #     y = "Percent of Living Diatom")
-
-View(Q3_plot)
-```
-
-```{r}
 Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter()
-
+ # labs(x = "pH", y = "Percent of Living Diatom")
 View(Q3_plot)
 ```
