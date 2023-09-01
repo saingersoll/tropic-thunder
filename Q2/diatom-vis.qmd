@@ -78,12 +78,15 @@ View(Q3_plot_df)
 ```{r}
 Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter(aes(color = side))
- # labs(x = "pH", y = "Percent of Living Diatom")
+ # labs(x = "Year", y = "pH")
 View(Q3_plot)
 ```
 
 https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
 
 ```{r}
-
+Q3_pl_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
+  geom_jitter(aes(color = side))
+ # labs(y = "Percent of Living Diatom") + theme(xaxis = FALSE) // line needs to be fixed
+View(Q3_plot)
 ```
