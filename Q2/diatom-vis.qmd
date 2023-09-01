@@ -70,10 +70,11 @@ agg_data <- Q3_ph_d_join %>%
 ```
 
 ```{r}
-ggplot(agg_data, aes(x = as.factor(p_h), y = as.factor(percent_live))) +
+x <- colnames()
+ggplot(agg_data, aes(x = as.factor(p_h))) +
   geom_tile(aes(fill = ..count..), stat = "count") +
   scale_fill_gradient(low = "white", high = "blue") +
-  labs(x = "p_h", y = "Percent Alive", fill = "Frequency") +
+  labs(x = "p_h", fill = "Frequency") +
   theme_minimal()
 ```
 
@@ -114,5 +115,7 @@ View(Q3_ph_plot)
 https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
 
 ```{r}
-
+ggplot(aes(x=p_h,y=percent_live),data=Q3_ph_d_join)+
+  geom_point(alpha=1/60)+
+  xlim(5,9)
 ```
