@@ -70,10 +70,11 @@ agg_data <- Q3_ph_d_join %>%
 ```
 
 ```{r}
-ggplot(agg_data, aes(x = as.factor(p_h), y = as.factor(percent_live))) +
+x <- colnames()
+ggplot(agg_data, aes(x = as.factor(p_h))) +
   geom_tile(aes(fill = ..count..), stat = "count") +
   scale_fill_gradient(low = "white", high = "blue") +
-  labs(x = "p_h", y = "Percent Alive", fill = "Frequency") +
+  labs(x = "p_h", fill = "Frequency") +
   theme_minimal()
 ```
 
