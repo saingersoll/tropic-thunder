@@ -11,6 +11,8 @@ editor: visual
 library(here)
 library(tidyverse)
 library(janitor)
+library(dplyr)
+library(lubridate)
 ```
 
 ## Read in Data
@@ -34,18 +36,45 @@ Q3_ph_clean <- Q3_ph %>% clean_names() %>%
   select(clean_date, p_h, sample_id)
 
 # filter diatom data to only Q3 site
-Q3_d_clean <- diatom_raw %>% 
+Q3_d_clean <- Q3_diatom_raw %>% 
   filter(site == "BQ3")
 ```
 
 ## Combining Data
 
 ```{r}
-Q3_ph_d_join <- full_join(Q3_ph_clean, Q3_d_clean)
+convert_to_ISO <- function(date_string) {
+  parsed_date <- mdy(date_string)
+  iso_date <- as_date(parsed_date)
+  return(iso_date)
+}
+
+Q3_d_clean <- Q3_d_clean %>% 
+  mutate(clean_date = convert_to_ISO(date))
+```
+
+```{r}
+Q3_ph_d_join <- cross_join(Q3_ph_clean, Q3_d_clean)
 
 View(Q3_ph_d_join)
 # it would be interesting to investigate the variations in side 1:3 percent_live as a variable of pH
 # potential option to explore reasoning for this for the presentation
+```
+
+### pH vs Percent alive
+
+```{r}
+agg_data <- Q3_ph_d_join %>%
+  group_by(p_h, percent_live) %>%
+  summarize(count = n(), .groups = "drop")
+```
+
+```{r}
+ggplot(agg_data, aes(x = as.factor(p_h), y = as.factor(percent_live))) +
+  geom_tile(aes(fill = ..count..), stat = "count") +
+  scale_fill_gradient(low = "white", high = "blue") +
+  labs(x = "p_h", y = "Percent Alive", fill = "Frequency") +
+  theme_minimal()
 ```
 
 ## Selecting columns
@@ -79,7 +108,7 @@ View(Q3_plot_df)
 Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
   geom_jitter(aes(color = side))
  # labs(x = "pH", y = "Percent of Living Diatom")
-View(Q3_plot)
+View(Q3_ph_plot)
 ```
 
 https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
