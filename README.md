@@ -22,23 +22,14 @@ PRM Start Date: 1989-05-16
 Q1:Q3 Start Date: 1989-05-20
 PRM:Q3 End Date: 2015-12-25
 
-these 4 cleaned data sets were then to be merged using bind_rows
+These 4 cleaned data sets were then to be merged using bind_rows
 
-Install package plotly to use subplot(n_plot, k_plot, nrows = 2) to stack graphs and store as final_plot
+Installed package plotly to use subplot(n_plot, k_plot, nrows = 2) to stack graphs and store as final_plot
 
-Storing a variable for layout modifications
+From here, the plot was customized using the plotly package
 
-Modifying final_plot,
-for titles, layout(title = "Water Stream Chemistry - Luquillo Mountains") %>%
-layout(title = 'Customizing Subplot Axes',
-                     plot_bgcolor='#E5ECF6',
-         xaxis = list(
-           zerolinecolor = '#ffff',
-           zerolinewidth = 2,
-           gridcolor = 'ffff'),
-         yaxis = list(
-           zerolinecolor = '#ffff',
-           zerolinewidth = 2,
-           gridcolor = 'ffff'))
+--
+The second question was approached by reading in a data set from Brynne Bryan. (2010). Rio Mameyes diatoms in the Rio Mameyes from 1998 to 2001. LTER Network Member Node. https://pasta.lternet.edu/package/metadata/eml/knb-lter-luq/114/4663700.
 
-
+A cross_join between our total_data in part 1 and the new, cleaned, data.
+This was used to create the ggplot for observation
