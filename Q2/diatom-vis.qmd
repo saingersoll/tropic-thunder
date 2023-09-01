@@ -70,7 +70,6 @@ agg_data <- Q3_ph_d_join %>%
 ```
 
 ```{r}
-x <- colnames()
 ggplot(agg_data, aes(x = as.factor(p_h))) +
   geom_tile(aes(fill = ..count..), stat = "count") +
   scale_fill_gradient(low = "white", high = "blue") +
