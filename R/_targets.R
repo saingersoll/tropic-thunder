@@ -94,5 +94,5 @@ list(
   
   # Ggplot Graphing
   
-  tar_target(k_plot, k_plot(total_data))
-
+  tar_target(k_plot, sample_plot(col_number(3)))
+)

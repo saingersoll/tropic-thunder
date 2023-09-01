@@ -38,7 +38,9 @@ tar_target(Q2_data, get_data(Q2))
 # Grabbing Q2 data
 tar_target(Q3_data, get_data(Q3))
 # Grabbing Q3 data
+```
 
+```{r}
 # Cleaning data sets
 # ? How do I demonstrate this code properly in target
 
@@ -51,8 +53,9 @@ tar_target(Q2_clean, scrub_funct(Q2_data))
 tar_target(Q3_clean, scrub_funct(Q3_data))
 # Cleaning Q3 data set  
 View(Q3_clean)
+```
 
-
+```{r}
 # Binding Data Sets
 tar_target(total_data1, binding_data(PRM_clean, Q1_clean))
 # Bound by rows PRM + Q1lean, Q3_clean))
@@ -60,11 +63,12 @@ tar_target(total_data1, binding_data(PRM_clean, Q1_clean))
 tar_target(total_data, binding_data(total_data1, total_data2))
 
 View(total_data)
+```
 
-
+```{r}
 # Ggplot Graphing
 
-tar_target(k_plot, sample_plot(col_number(3)))
+tar_target(k_plot, k_plot(total_data))
 
 View(k_plot)
 ```

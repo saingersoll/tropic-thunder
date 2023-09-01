@@ -24,9 +24,23 @@ binding_data <- function(site_df, site_df2) {
   bind_rows(site_df2)
 }
 
+
 # Ggplot Graphing Concentration 
-sample_plot <- function(total_df, col_no) {
-  ggplot(data = total_df , aes(x = clean_date, y = col_no()))+
+k_plot <- function(total_df) {
+  ggplot(data = total_df , aes(x = clean_date, y = k)) +
   geom_line(aes(color = sample_id)) +
-  labs(x = "Year")
+  labs(x = "Year",
+  y = "Potassium")
 }
+# Potassium Plot
+
+n_plot <- function(total_df) {
+  ggplot(data = total_data , aes(x = clean_date, y = no3_n)) +
+  geom_line(aes(color = sample_id)) +
+  labs(y = "Nitrate") +
+  theme(axis.title.x=element_blank())
+}
+# Nitrate Plot no x-axis title
+
+
+# Plotly subplot stacking
