@@ -83,7 +83,7 @@ total_data <- bind_rows(total_data2, Q3_clean)
 
 ```{r}
 k_plot <- ggplot(data = total_data , aes(x = clean_date, y = k))+
-  geom_line(aes(color = sample_id)) +
+  geom_line(aes(color = sample_id), show.legend = FALSE) +
   labs(x = "Year",
        y = "Potassium")
  
@@ -92,17 +92,20 @@ k_plot <- ggplot(data = total_data , aes(x = clean_date, y = k))+
 
 ```{r}
  n_plot <- ggplot(data = total_data , aes(x = clean_date, y = no3_n))+
-  geom_line(aes(color = sample_id))+
+  geom_line(aes(color = sample_id), show.legend = FALSE)+
   labs(y = "Nitrate")+
-  theme(axis.title.x=element_blank())
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_blank())
   
  
  n_plot
 ```
 
 ```{r}
-final_plot <- subplot(n_plot, k_plot, nrows = 2, titleY = TRUE, titleX = TRUE) + 
-  layout(title = "Water Stream Chemistry - Luqillo Mountains")
+final_plot <- subplot(style(n_plot, showlegend = F),
+                      k_plot, nrows = 2, titleY = TRUE, titleX = TRUE)  %>% 
+  layout(title = "Water Stream Chemistry - Luqillo Mountains",
+         legend=list(title=list(text='<b>  Site </b>')))
 
 final_plot
 ```
