@@ -65,20 +65,24 @@ Q3_ph_d_join <- cross_join(Q3_ph_clean, Q3_d_clean)
 ### Percent Living vs Side No over Sampling Period
 
 ```{r}
+# View the cleaned diatom data
 View(Q3_d_clean)
 
+# Prepare the data for plotting
 Q3_pl_plot_df <- Q3_d_clean %>% 
-  mutate(side_n = as.numeric(side)) %>% 
-  mutate(percent_living = as.numeric(percent_live))
+  mutate(side_n = as.numeric(side)) %>%  # Convert 'side' to numeric
+  mutate(percent_living = as.numeric(percent_live))  # Convert 'percent_live' to numeric
 
+# View the prepared data
 View(Q3_pl_plot_df)  
   
-  # Rough Plot
-Q3_pl_plot <- ggplot(data = Q3_pl_plot_df,  aes(x = clean_date, y = percent_living)) +
-  geom_jitter(aes(color = side)) +
-  scale_color_manual(values= c("1" = "magenta", "2" = "aquamarine", "3" = "darkblue"))
+# Create the plot
+Q3_pl_plot <- ggplot(data = Q3_pl_plot_df, aes(x = clean_date, y = percent_living)) +  # Set up ggplot
+  geom_jitter(aes(color = side)) +  # Add jitter points and color by 'side'
+  geom_smooth(aes(color = side, group = side), method = "lm", se = FALSE) +  # Add best-fit line for each 'side'
+  scale_color_manual(values= c("1" = "magenta", "2" = "aquamarine", "3" = "darkblue"))  # Manually set colors
              
-             
+# Display the plot
 Q3_pl_plot
 ```
 
