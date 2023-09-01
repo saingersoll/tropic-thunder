@@ -10,6 +10,7 @@ editor: visual
 ```{r}
 library(here)
 library(tidyverse)
+library(janitor)
 ```
 
 ## Read in Data
@@ -54,15 +55,20 @@ View(Q3_ph_d_join)
 Q3_cols <- c("p_h", "side", "percent_live", "clean_date")
 
 # Slicing df
-Q3_plot_df <- Q3_ph_d_join %>% 
-  select(p_h, side, percent_live, clean_date) %>%
-  filter(!is.na(percent_live))
-
 # ATTENTION THIS DATA FRAME CONTAINS DOUBLES AND CHR 
 # NEEDS TO BE CONVERTED TO NUMERIC TO PLOT
+Q3_plot_df <- Q3_ph_d_join %>% 
+  select(p_h, side, percent_live, clean_date) %>%
+ 
+  
+  # mutate(across(is.double(), as.numeric(), na.rm = TRUE)) %>% 
+  #mutate(across(is.character(), as.numeric(), na.rm = TRUE))
 
-#%>% 
- # mutate(across(Q3_cols, is.numeric))
+#mutate(across(p_h:clean_date, as.numeric(), na.rm = TRUE))
+
+ # mutate(across(Q3_cols, is.numeric)
+  
+# %>%  filter(!is.na(percent_live))
 
 View(Q3_plot_df)
 ```
@@ -71,10 +77,12 @@ View(Q3_plot_df)
 
 ```{r}
 Q3_ph_plot <- ggplot(data = Q3_plot_df, aes(x = clean_date, y = p_h)) +
-  geom_jitter()
+  geom_jitter(aes(color = side))
  # labs(x = "pH", y = "Percent of Living Diatom")
 View(Q3_plot)
 ```
+
+https://towardsdatascience.com/explore-two-variables-using-r-68ece9cbcd81
 
 ```{r}
 
